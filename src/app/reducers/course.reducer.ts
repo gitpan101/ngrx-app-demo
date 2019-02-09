@@ -12,13 +12,19 @@ export function courseReducer(
   action: CourseActions.Actions
 ) {
   switch (action.type) {
+    case CourseActions.LOAD_COURSE:
+      return [...state];
+
+    case CourseActions.LOAD_COURSE_SUCCESS:
+      return [...state, ...action.payload];
+
     case CourseActions.ADD_COURSE:
       return [...state, action.payload];
 
     case CourseActions.REMOVE_COURSE:
       return [...state].filter((course, index) => index !== action.payload);
 
-    default:
-      return state;
+    // default:
+    //   return state;
   }
 }

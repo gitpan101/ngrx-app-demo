@@ -16,12 +16,14 @@ export class ReadComponent implements OnInit {
   courses$: Observable<ICourse[]>;
 
   constructor(private store: Store<AppState>) {
-    this.courses$ = this.store.select("course");
+    this.store.dispatch(new CustomerActions.LoadCourse());
   }
 
   deleteCourse(index: number) {
     this.store.dispatch(new CustomerActions.RemoveCourse(index));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.courses$ = this.store.select("course");
+  }
 }
